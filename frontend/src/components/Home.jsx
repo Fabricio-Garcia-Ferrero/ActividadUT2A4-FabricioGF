@@ -140,18 +140,20 @@ function Home() {
                         <TableHead>
                             <TableRow>
                                 <TableCell></TableCell>
-                                <TableCell style={{ color: 'black' }}>Nombre</TableCell>
-                                <TableCell style={{ color: 'black' }}>Marca</TableCell>
-                                <TableCell style={{ color: 'black' }}>Tipo</TableCell>
-                                <TableCell style={{ color: 'black' }}>Precio</TableCell>
+                                <TableCell style={{ color: 'white' }}>Nombre</TableCell>
+                                <TableCell style={{ color: 'white' }}>Marca</TableCell>
+                                <TableCell style={{ color: 'white' }}>Tipo</TableCell>
+                                <TableCell style={{ color: 'white' }}>Precio</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {tableData.map((row) => (
                                 <TableRow key={row.id}>
-                                    <Button onClick={() => handleDeleteItem(row.id)}>
-                                        <DeleteForeverIcon />
-                                    </Button>
+                                    <TableCell>
+                                        <Button onClick={() => handleDeleteItem(row.id)}>
+                                            <DeleteForeverIcon />
+                                        </Button>
+                                    </TableCell>
                                     <TableCell>{row.nombre}</TableCell>
                                     <TableCell>{row.marca}</TableCell>
                                     <TableCell>{row.tipo}</TableCell>
