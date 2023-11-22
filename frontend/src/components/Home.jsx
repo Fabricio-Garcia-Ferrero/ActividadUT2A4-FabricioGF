@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginActions } from '../store/storelogin';
-import { Button, Grid, Container, Toolbar, Typography, AppBar, TextField, Paper, Box, Table, TableContainer, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Button, TextField, Paper, Box, Table, TableContainer, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Topbar from "./Topbar"
 
 function Home() {
     const userData = useSelector(state => state.login);
@@ -33,9 +33,8 @@ function Home() {
             .then(response => {
                 console.log(response)
                 handleSelectItem()
+                setItem({ nombre: '', marca: '', tipo: '', precio: '' })
             })
-
-
     }
 
     const handleSelectItem = (e) => {
@@ -59,28 +58,7 @@ function Home() {
 
     return (
         <>
-            <AppBar position='static'>
-                <Container>
-                    <Toolbar>
-                        <Grid container spacing={2} alignItems="center">
-                            <Grid item xs={12} md={3} lg={3}>
-                                <AccountCircleIcon />
-                            </Grid>
-                            <Grid item xs={12} md={3} lg={3}>
-                                <Typography>{userData.userName}</Typography>
-                            </Grid>
-                            <Grid item xs={12} md={3} lg={3}>
-                                <Link to='/home' style={{ TextDecoration: 'none', color: 'white' }}>Inicio</Link>
-                            </Grid>
-                            <Grid item xs={12} md={3} lg={3}>
-                                <Button variant="contained" onClick={handleOnClick}>
-                                    Salir
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </Toolbar>
-                </Container>
-            </AppBar>
+            <Topbar></Topbar>
             <Paper
                 elevation={3}
                 style={{
@@ -150,9 +128,9 @@ function Home() {
                             {tableData.map((row) => (
                                 <TableRow key={row.id}>
                                     <TableCell>
-                                        <Button onClick={() => handleDeleteItem(row.id)}>
+                                        {userData.userRol==='admin' && <Button onClick={() => handleDeleteItem(row.id)}>
                                             <DeleteForeverIcon />
-                                        </Button>
+                                        </Button>}
                                     </TableCell>
                                     <TableCell>{row.nombre}</TableCell>
                                     <TableCell>{row.marca}</TableCell>

@@ -53,7 +53,7 @@ app.get('/getItems', async function (req, res, next) {
     try {
         res.json(await item.getData())
     } catch (err) {
-        console.error(`Error while inserting items `, err.message);
+        console.error(`Error while getting items `, err.message);
         next(err);
     }
     //En el frontend llamar al backend con la función fetch() cuando se pique el botón de
@@ -63,7 +63,7 @@ app.get('/deleteItem', async function (req, res, next) {
     try {
         res.json(await item.deleteData(req))
     } catch (err) {
-        console.error(`Error while inserting items `, err.message);
+        console.error(`Error while deleting items `, err.message);
         next(err);
     }
     //En el frontend llamar al backend con la función fetch() cuando se pique el botón de
