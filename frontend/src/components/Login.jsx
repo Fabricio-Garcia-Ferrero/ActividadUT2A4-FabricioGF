@@ -1,7 +1,7 @@
 //FABRICIO GARCÍA FERRERO
 import React, { useState } from 'react'
 import Button from '@mui/material/Button'
-import { Container, Typography, Box, TextField, Paper, Grid, Avatar} from '@mui/material';
+import { Typography, Box, TextField, Paper, Grid, Avatar, Tooltip} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import { loginActions } from '../store/storelogin';
@@ -86,13 +86,15 @@ return <>
                 value={data.pwd}
                 onChange={(event) => {setData({...data, pwd: event.target.value})}}
             ></TextField>
-            <Button 
-                type='submit'
-                variant='contained'
-                style={spacingStyles}
-            >
-                Login
-            </Button>
+            <Tooltip title="Acceder" arrow>
+                <Button 
+                    type='submit'
+                    variant='contained'
+                    style={spacingStyles}
+                >
+                    Login
+                </Button>
+            </Tooltip>
         </Box>
     </Grid>
 </Grid>

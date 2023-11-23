@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux';
 import { useEffect } from "react";
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loginActions } from '../store/storelogin';
+import { useNavigate} from 'react-router-dom';
 import { Button, TextField, Paper, Box, Table, TableContainer, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Topbar from "./Topbar"
+import { Tooltip } from "@mui/material";
 
 function Home() {
     const userData = useSelector(state => state.login);
     const navigate = useNavigate();
     const isLoggedin = userData.isAutenticated;
-    const dispatch = useDispatch();
     const [item, setItem] = useState({ nombre: '', marca: '', tipo: '', precio: '' })
     const [tableData, setTableData] = useState([])
 
@@ -21,10 +19,6 @@ function Home() {
             navigate('/');
         }
     }, [isLoggedin, navigate]);
-
-    const handleOnClick = (e) => {
-        dispatch(loginActions.logout());
-    }
 
     const handleSaveItem = (e) => {
         e.preventDefault();
@@ -108,11 +102,15 @@ function Home() {
                         onChange={(event) => setItem({ ...item, precio: event.target.value })}
                         sx={{ marginBottom: 2 }}
                     />
-                    <Button type="submit" variant="contained">
-                        Insertar
-                    </Button>
+                    <Tooltip title="Añadir registro" arrow>
+                            <Button type="submit" variant="contained">
+                                Insertar
+                            </Button>
+                        </Tooltip>
                 </Box>
-                <Button onClick={handleSelectItem}>Seleccionar</Button>
+                <Tooltip title="Obtener datos de la tabla" arrow>
+                    <Button onClick={handleSelectItem}>Seleccionar</Button>
+                </Tooltip>
                 <TableContainer>
                     <Table aria-label="tabla">
                         <TableHead>
@@ -128,9 +126,9 @@ function Home() {
                             {tableData.map((row) => (
                                 <TableRow key={row.id}>
                                     <TableCell>
-                                        {userData.userRol==='admin' && <Button onClick={() => handleDeleteItem(row.id)}>
+                                        {userData.userRol==='admin' && <Tooltip title="Borrar" arrow><Button onClick={() => handleDeleteItem(row.id)}>
                                             <DeleteForeverIcon />
-                                        </Button>}
+                                        </Button></Tooltip>}
                                     </TableCell>
                                     <TableCell>{row.nombre}</TableCell>
                                     <TableCell>{row.marca}</TableCell>

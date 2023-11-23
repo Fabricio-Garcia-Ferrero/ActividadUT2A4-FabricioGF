@@ -1,8 +1,8 @@
-import { Button, Paper } from "@mui/material"
+import { Button, Paper, Tooltip } from "@mui/material"
 import Topbar from "./Topbar"
 import React, { useState, useEffect } from "react";
 import InformeColeccion from "./InformeColeccion";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function Informes() {
@@ -36,10 +36,14 @@ function Informes() {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-            <Button 
-                variant="contained"
-                onClick={handleShowInfo}
-            >INFORME DE COLECCIÓN</Button>
+            <Tooltip title="Obtener Informa" arrow>
+                <Button 
+                    variant="contained"
+                    onClick={handleShowInfo}
+                >
+                    INFORME DE COLECCIÓN
+                </Button>
+            </Tooltip>
         </Paper>
         {botonClicked===true && <InformeColeccion datos = {tableInform}/>}
     </>
