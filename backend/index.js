@@ -49,9 +49,29 @@ app.get('/addItem', async function (req, res, next) {
     //En el frontend llamar al backend con la función fetch() cuando se pique el botón de
 })
 
+app.get('/adduser', async function (req, res, next) {
+    try {
+        res.json(await item.insertUser(req))
+        console.log('Se envia el req al addprueba')
+    } catch (err) {
+        console.error(`Error while inserting items `, err.message);
+        next(err);
+    }
+    //En el frontend llamar al backend con la función fetch() cuando se pique el botón de
+})
+
 app.get('/getItems', async function (req, res, next) {
     try {
         res.json(await item.getData())
+    } catch (err) {
+        console.error(`Error while getting items `, err.message);
+        next(err);
+    }
+    //En el frontend llamar al backend con la función fetch() cuando se pique el botón de
+})
+app.get('/getuser', async function (req, res, next) {
+    try {
+        res.json(await item.getUser())
     } catch (err) {
         console.error(`Error while getting items `, err.message);
         next(err);

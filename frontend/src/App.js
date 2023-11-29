@@ -4,6 +4,7 @@ import './App.css';
 import Login from './components/Login'
 import Home from './components/Home'
 import Informes from './components/Informes'
+import GesUser from './components/GesUser'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 //importamos la función createBrowserRouter y el componente RouterProvider
 //de la librería react-router-dom
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: 'informes',
                 element: <Informes/>
+            },
+            {
+                path: 'gesuser',
+                element: <GesUser/>
             }
         ]
     }

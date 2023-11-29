@@ -17,6 +17,8 @@ function Home() {
     useEffect(() => {
         if (!isLoggedin) {
             navigate('/');
+        }else{
+            handleSelectItem()
         }
     }, [isLoggedin, navigate]);
 
@@ -102,15 +104,8 @@ function Home() {
                         onChange={(event) => setItem({ ...item, precio: event.target.value })}
                         sx={{ marginBottom: 2 }}
                     />
-                    <Tooltip title="Añadir registro" arrow>
-                            <Button type="submit" variant="contained">
-                                Insertar
-                            </Button>
-                        </Tooltip>
+                    {userData.userRol !== 'invitado' && <Tooltip title="Añadir registro" arrow><Button type="submit" variant="contained">Insertar</Button></Tooltip>}
                 </Box>
-                <Tooltip title="Obtener datos de la tabla" arrow>
-                    <Button onClick={handleSelectItem}>Seleccionar</Button>
-                </Tooltip>
                 <TableContainer>
                     <Table aria-label="tabla">
                         <TableHead>
